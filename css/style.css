@@ -1,21 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
 :root {
-  --bg: #f7f7fb;
-  --text: #1a1a1a;
-  --muted: #6b6b7b;
-  --card-bg: #ffffff;
-  --border: #e5e5ef;
-  --accent: #6c5ce7;
-  --accent-soft: #ede9fe;
+  --bg: #fff7f0;
+  --text: #5b3a4a;
+  --muted: #b48a9a;
+  --card-bg: #fffdfa;
+  --border: #ffd6e8;
+  --accent: #ff8fab;
+  --accent-2: #ffd23f;
+  --accent-soft: #fff0b8;
+  --pink-soft: #ffe3ee;
 }
 
 :root[data-theme="dark"] {
-  --bg: #12121a;
-  --text: #f0f0f5;
-  --muted: #a0a0b0;
-  --card-bg: #1c1c28;
-  --border: #2c2c3a;
-  --accent: #a29bfe;
-  --accent-soft: #2a2645;
+  --bg: #2b1f2a;
+  --text: #ffe9f2;
+  --muted: #d9aec2;
+  --card-bg: #3a2b3a;
+  --border: #5c3f52;
+  --accent: #ff9ecf;
+  --accent-2: #ffd23f;
+  --accent-soft: #4a3a2a;
+  --pink-soft: #4a2f42;
 }
 
 * {
@@ -25,7 +31,7 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Gowun Dodum", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
@@ -34,10 +40,11 @@ body {
 
 /* 히어로 영역 */
 .hero {
-  background: linear-gradient(135deg, var(--accent) 0%, #74b9ff 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
   padding: 5rem 2rem 6rem;
   color: #fff;
   text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .hero-inner {
@@ -49,7 +56,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 0.8rem;
-  opacity: 0.85;
+  opacity: 0.9;
   margin-bottom: 0.75rem;
 }
 
@@ -61,24 +68,25 @@ body {
 
 .subtitle {
   font-size: 1.05rem;
-  opacity: 0.9;
+  opacity: 0.95;
   margin-bottom: 2rem;
 }
 
 .theme-toggle {
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
   font-size: 0.9rem;
+  font-family: inherit;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.28);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px) scale(1.03);
 }
 
 /* 본문 */
@@ -88,17 +96,20 @@ main {
   padding: 0 2rem 4rem;
 }
 
-.toc {
+.toc,
+.restaurants {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 24px;
   padding: 2rem;
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px -20px rgba(255, 143, 171, 0.35);
 }
 
-.toc h2 {
+.toc h2,
+.restaurants h2 {
   font-size: 1.3rem;
   margin-bottom: 1.25rem;
+  color: var(--accent);
 }
 
 .toc-list {
@@ -113,14 +124,15 @@ main {
   align-items: center;
   gap: 1rem;
   padding: 0.9rem 1rem;
+  background: var(--pink-soft);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 16px;
   transition: border-color 0.2s ease, transform 0.15s ease;
 }
 
 .toc-item:hover {
   border-color: var(--accent);
-  transform: translateX(4px);
+  transform: translateX(4px) scale(1.02);
 }
 
 .toc-number {
@@ -131,13 +143,70 @@ main {
   height: 2rem;
   border-radius: 50%;
   background: var(--accent-soft);
-  color: var(--accent);
+  color: #a15a3f;
   font-weight: 700;
   flex-shrink: 0;
 }
 
 .toc-text {
   color: var(--muted);
+}
+
+/* 맛집 리스트 */
+.restaurant-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.1rem;
+}
+
+.restaurant-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.3rem 1.3rem 1.1rem;
+  background: linear-gradient(160deg, var(--pink-soft) 0%, var(--accent-soft) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.restaurant-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.restaurant-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 16px 28px -16px rgba(255, 143, 171, 0.5);
+}
+
+.restaurant-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.restaurant-location {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
 
 /* 푸터 */
